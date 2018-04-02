@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".exchange.ExchangeFragment">
+
+    <include
+        android:id="@+id/no_internet_view"
+        layout="@layout/no_internet_connection_error"
+        android:visibility="gone">
+
+    </include>
+
+    <include
+        android:id="@+id/server_side_error_view"
+        layout="@layout/server_side_error"
+        android:visibility="gone">
+
+    </include>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/main_composition"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/primary_currency_icon"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:src="@drawable/flag_united_states_of_america"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/primary_currency_abbreviation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/usd"
+            android:textColor="@android:color/black"
+            android:textSize="24sp"
+            app:layout_constraintStart_toEndOf="@+id/primary_currency_icon"
+            app:layout_constraintTop_toTopOf="@+id/primary_currency_icon" />
+
+        <TextView
+            android:id="@+id/primary_currency_full_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/united_states_dollar"
+            android:textColor="@android:color/black"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/primary_currency_abbreviation"
+            app:layout_constraintTop_toBottomOf="@+id/primary_currency_abbreviation" />
+
+
+        <EditText
+            android:id="@+id/primary_currency_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="@string/one"
+
+            android:textSize="24sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/primary_currency_abbreviation"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <ImageView
+            android:id="@+id/secondary_currency_icon"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="64dp"
+            android:src="@drawable/flag_ukraine"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/primary_currency_icon" />
+
+        <TextView
+            android:id="@+id/secondary_currency_abbreviation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="UAH"
+            android:textColor="@android:color/black"
+            android:textSize="24sp"
+            app:layout_constraintStart_toEndOf="@+id/secondary_currency_icon"
+            app:layout_constraintTop_toTopOf="@+id/secondary_currency_icon" />
+
+        <TextView
+            android:id="@+id/secondary_currency_full_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ukrainian hryvnia"
+            android:textColor="@android:color/black"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/secondary_currency_abbreviation"
+            app:layout_constraintTop_toBottomOf="@+id/secondary_currency_abbreviation" />
+
+        <TextView
+            android:id="@+id/secondary_currency_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:textColor="@android:color/black"
+            android:textSize="24sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/secondary_currency_abbreviation"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="27.3" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.constraint.ConstraintLayout>
