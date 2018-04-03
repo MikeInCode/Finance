@@ -1,29 +1,21 @@
 package mike.finance;
 
-import java.text.DecimalFormat;
+import java.math.BigDecimal;
+import java.math.MathContext;
 
 public class MathOperations {
 
-    public static String round(String value) {
-        if (value.contains(".")) {
-            String[] numberSplit = value.split("\\.");
-            Double buf = Double.parseDouble(numberSplit[1]);
-            if (buf == 0) {
-                return numberSplit[0];
-            } else {
-                buf = Double.parseDouble(value);
-                DecimalFormat df = new DecimalFormat("#.###");
-                buf = Double.valueOf(df.format(buf));
-                return buf.toString();
-            }
-        } else {
-            return value;
-        }
-    }
+    //public static String roundRate(String value) {
+    //    return new BigDecimal(value).setScale(3, BigDecimal.ROUND_HALF_UP).toString();
+    //}
 
     public static String buildCurrencyRate(String value) {
-        Double buf = Double.parseDouble(value);
-        Double result = 1.0 / buf;
-        return result.toString();
+        return new BigDecimal(1).divide(new BigDecimal(value), 3, BigDecimal.ROUND_HALF_UP)
+                .stripTrailingZeros().toPlainString();
+    }
+
+    public static String calculateExchangeResult(String value, String value2) {
+        return new BigDecimal(value).multiply(new BigDecimal(value2))
+                .setScale(3, BigDecimal.ROUND_HALF_UP).stripTrailingZeros().toPlainString();
     }
 }

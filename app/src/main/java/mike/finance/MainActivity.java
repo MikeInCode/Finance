@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 switch (item.getItemId()) {
                     case R.id.navigation_rates:
-                        //transaction.replace(R.id.fragment_content, ratesFragment).commit();
+                        transaction.replace(R.id.fragment_content, ratesFragment).commit();
                         return true;
                     case R.id.navigation_exchange:
                         transaction.replace(R.id.fragment_content, exchangeFragment).commit();
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //getSupportFragmentManager().beginTransaction()
-        //        .replace(R.id.fragment_content, ratesFragment).commit();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_content, ratesFragment).commit();
     }
 }

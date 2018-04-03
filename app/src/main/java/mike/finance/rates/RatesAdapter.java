@@ -85,7 +85,7 @@ public class RatesAdapter extends BaseAdapter {
                     .getIdentifier(currencyListItem.getCurrencyIcon(), "drawable", context.getPackageName()));
             viewHolder.currencyAbbreviation.setText(currencyListItem.getCurrencyAbbreviation());
             viewHolder.currencyFullName.setText(currencyListItem.getCurrencyFullName());
-            viewHolder.currencyRate.setText(MathOperations.round(currencyListItem.getCurrencyRate()));
+            viewHolder.currencyRate.setText(currencyListItem.getCurrencyRate());
         }
 
         //viewHolder.isFavouriteButton.setImageResource(R.drawable.ic_fav_button_on);

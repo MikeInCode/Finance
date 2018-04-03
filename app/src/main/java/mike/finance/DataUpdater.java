@@ -81,7 +81,7 @@ public final class DataUpdater {
                 }));
     }
 
-    public void refreshRatesData(TextView exchangeResult) {
+    public void refreshRatesData(String amount, TextView exchangeResult) {
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(new StringRequest(Request.Method.GET,
                 CurrencyAPI.getExchangeLink("USD", "UAH"),
@@ -92,7 +92,7 @@ public final class DataUpdater {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             String rate = jsonObject.getString("rate");
-                            exchangeResult.setText(MathOperations.round(rate));
+                            exchangeResult.setText(MathOperations.calculateExchangeResult(amount, rate));
                         } catch (JSONException e) {
                             setResponseStatus(SERVER_SIDE_ERROR, EXCHANGE);
                         }
