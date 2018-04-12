@@ -3,13 +3,13 @@ package mike.finance;
 public class CurrencyAPI {
 
     private static String Link = "https://v3.exchangerate-api.com/";
-    private static String Key = "eea141b9e02d415609d257a1/";
+    private static String Key = "de816dcd9dc77c6cb298060e";
 
-    public static String getRatesLink(String toCurrency){
-        return Link + "bulk/" + Key + toCurrency;
+    public static String getRatesLink() {
+        return Link + "bulk/" + Key + "/";
     }
 
-    public static String getExchangeLink(String fromCurrency, String toCurrency){
-        return Link + "pair/" + Key + fromCurrency + "/" + toCurrency;
+    public static String getExchangeLink() {
+        return Link + "pair/" + Key + "/";
     }
 }

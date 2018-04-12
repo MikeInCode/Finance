@@ -1,34 +1,43 @@
 package mike.finance;
 
 public class CurrencyInformation {
-    private String currencyAbbreviation;
-    private String currencyFullName;
-    private String currencyIcon;
-    private String currencyRate;
+    private String code;
+    private String name;
+    private String icon;
+    private String rate;
 
-    public CurrencyInformation(String currencyAbbreviation, String currencyFullName, String currencyIcon) {
-        this.currencyAbbreviation = currencyAbbreviation;
-        this.currencyFullName = currencyFullName;
-        this.currencyIcon = currencyIcon;
+    public CurrencyInformation(String code, String rate) {
+        this.code = code;
+        this.rate = rate;
     }
 
-    public String getCurrencyAbbreviation() {
-        return currencyAbbreviation;
+    public String getCode() {
+        return code;
     }
 
-    public String getCurrencyFullName() {
-        return currencyFullName;
+    public String getName() {
+        return name;
     }
 
-    public String getCurrencyIcon() {
-        return currencyIcon;
+    public String getIcon() {
+        return icon;
     }
 
-    public void setCurrencyRate(String currencyRate) {
-        this.currencyRate = currencyRate;
+    public String getRate() {
+        return rate;
     }
 
-    public String getCurrencyRate() {
-        return currencyRate;
+    public CurrencyInformation setName(String name) {
+        this.name = name;
+        return this;
+    }
+
+    public CurrencyInformation setIcon(String icon) {
+        this.icon = icon;
+        return this;
+    }
+
+    public void setRate(String rate) {
+        this.rate = rate;
     }
 }

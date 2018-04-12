@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rates_list_refresh"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".rates.RatesFragment">
 
-    <include
-        android:id="@+id/no_internet_view"
-        layout="@layout/no_internet_connection_error"
-        android:visibility="gone">
-
-    </include>
-
-    <include
-        android:id="@+id/server_side_error_view"
-        layout="@layout/server_side_error"
-        android:visibility="gone">
-
-    </include>
-
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/rates_list_refresh"
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/no_internet_view"
+            layout="@layout/no_internet_connection_error"
+            android:visibility="invisible">
+
+        </include>
+
+        <include
+            android:id="@+id/server_side_error_view"
+            layout="@layout/server_side_error"
+            android:visibility="invisible">
+
+        </include>
 
         <ListView
             android:id="@+id/rates_list_view"
@@ -32,6 +32,6 @@
 
         </ListView>
 
-    </android.support.v4.widget.SwipeRefreshLayout>
+    </android.support.constraint.ConstraintLayout>
 
-</android.support.constraint.ConstraintLayout>
+</android.support.v4.widget.SwipeRefreshLayout>

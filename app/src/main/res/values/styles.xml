@@ -8,4 +8,11 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="ExchangeKeyboard">
+        <item name="android:background">@drawable/rounded_button</item>
+        <item name="android:textColor">@drawable/rounded_button_text</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:stateListAnimator">@null</item>
+    </style>
+
 </resources>

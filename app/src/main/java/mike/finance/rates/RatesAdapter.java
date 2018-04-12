@@ -1,10 +1,13 @@
 package mike.finance.rates;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,31 +21,23 @@ public class RatesAdapter extends BaseAdapter {
 
     private Context context;
     private List<CurrencyInformation> currencyList;
-    private String primaryCurrency;
+    private SharedPreferences prefs;
 
     /**
      * pattern "ViewHolder" for the optimize usage of device's resources
      */
     private static class ViewHolder {
-        TextView currencyAbbreviation;
-        TextView currencyFullName;
+        TextView currencyCode;
+        TextView currencyName;
         ImageView currencyIcon;
         TextView currencyRate;
-        //ImageButton isFavouriteButton;
+        ImageButton isFavourite;
     }
 
-    public RatesAdapter(Context context) {
+    public RatesAdapter(Context context, List<CurrencyInformation> currencyList) {
         this.context = context;
-    }
-
-    public RatesAdapter setCurrencyList(List<CurrencyInformation> currencyList) {
         this.currencyList = currencyList;
-        return this;
-    }
-
-    public RatesAdapter setPrimaryCurrency(String primaryCurrency) {
-        this.primaryCurrency = primaryCurrency;
-        return this;
+        prefs = PreferenceManager.getDefaultSharedPreferences(context);
     }
 
     @Override
@@ -72,23 +67,43 @@ public class RatesAdapter extends BaseAdapter {
             LayoutInflater inflater = LayoutInflater.from(context);
             convertView = inflater.inflate(R.layout.rates_list_item, parent, false);
             viewHolder.currencyIcon = convertView.findViewById(R.id.currency_icon);
-            viewHolder.currencyAbbreviation = convertView.findViewById(R.id.currency_abbreviation);
-            viewHolder.currencyFullName = convertView.findViewById(R.id.currency_full_name);
+            viewHolder.currencyCode = convertView.findViewById(R.id.currency_abbreviation);
+            viewHolder.currencyName = convertView.findViewById(R.id.currency_full_name);
             viewHolder.currencyRate = convertView.findViewById(R.id.currency_rate);
-            //viewHolder.isFavouriteButton = convertView.findViewById(R.id.favourite_button);
+            viewHolder.isFavourite = convertView.findViewById(R.id.favourite_button);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        if (!currencyListItem.getCurrencyAbbreviation().equals(primaryCurrency)) {
-            viewHolder.currencyIcon.setImageResource(context.getResources()
-                    .getIdentifier(currencyListItem.getCurrencyIcon(), "drawable", context.getPackageName()));
-            viewHolder.currencyAbbreviation.setText(currencyListItem.getCurrencyAbbreviation());
-            viewHolder.currencyFullName.setText(currencyListItem.getCurrencyFullName());
-            viewHolder.currencyRate.setText(currencyListItem.getCurrencyRate());
+        viewHolder.currencyIcon.setImageResource(context.getResources()
+                .getIdentifier(currencyListItem.getIcon(), "drawable", context.getPackageName()));
+        viewHolder.currencyCode.setText(currencyListItem.getCode());
+        viewHolder.currencyName.setText(currencyListItem.getName());
+        viewHolder.currencyRate.setText(MathOperations.setRightRate(prefs, currencyListItem.getRate()));
+
+        if (!prefs.getBoolean(currencyListItem.getCode() + "_favorite", false)) {
+            viewHolder.isFavourite.setImageResource(R.drawable.ic_favorite_inactive);
+        } else {
+            viewHolder.isFavourite.setImageResource(R.drawable.ic_favorite_active);
         }
 
-        //viewHolder.isFavouriteButton.setImageResource(R.drawable.ic_fav_button_on);
+        viewHolder.isFavourite.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                SharedPreferences.Editor editor = prefs.edit();
+                if (!prefs.getBoolean(currencyListItem.getCode() + "_favorite", false)) {
+                    viewHolder.isFavourite.setImageResource(R.drawable.ic_favorite_active);
+                    editor.putBoolean(currencyListItem.getCode() + "_favorite", true);
+                    editor.apply();
+                } else {
+                    viewHolder.isFavourite.setImageResource(R.drawable.ic_favorite_inactive);
+                    editor.putBoolean(currencyListItem.getCode() + "_favorite", false);
+                    editor.apply();
+                }
+                return false;
+            }
+        });
+
         return convertView;
     }
 }
