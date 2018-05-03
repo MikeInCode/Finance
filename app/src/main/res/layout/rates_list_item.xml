@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/currency_abbreviation"
+        android:id="@+id/currency_code"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -27,13 +27,13 @@
         tools:text="USD" />
 
     <TextView
-        android:id="@+id/currency_full_name"
+        android:id="@+id/currency_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@android:color/black"
         android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="@+id/currency_abbreviation"
-        app:layout_constraintTop_toBottomOf="@+id/currency_abbreviation"
+        app:layout_constraintStart_toStartOf="@+id/currency_code"
+        app:layout_constraintTop_toBottomOf="@+id/currency_code"
         tools:text="United States dollar" />
 
     <TextView
@@ -43,13 +43,13 @@
         android:layout_marginEnd="16dp"
         android:textColor="@android:color/black"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/favourite_button"
-        app:layout_constraintEnd_toStartOf="@+id/favourite_button"
-        app:layout_constraintTop_toTopOf="@+id/favourite_button"
+        app:layout_constraintBottom_toBottomOf="@+id/favorite_button"
+        app:layout_constraintEnd_toStartOf="@+id/favorite_button"
+        app:layout_constraintTop_toTopOf="@+id/favorite_button"
         tools:text="27.90" />
 
     <ImageButton
-        android:id="@+id/favourite_button"
+        android:id="@+id/favorite_button"
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_marginEnd="16dp"

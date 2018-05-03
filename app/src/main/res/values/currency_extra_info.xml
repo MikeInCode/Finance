@@ -1,400 +1,400 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="AED">
+    <array name="AED">
         <item>UAE Dirham</item>
-        <item>flag_united_arab_emirates</item>
-    </string-array>
-    <string-array name="ALL">
+        <item>@drawable/flag_united_arab_emirates</item>
+    </array>
+    <array name="ALL">
         <item>Albanian Lek</item>
-        <item>flag_albania</item>
-    </string-array>
-    <string-array name="AMD">
+        <item>@drawable/flag_albania</item>
+    </array>
+    <array name="AMD">
         <item>Armenian Dram</item>
-        <item>flag_armenia</item>
-    </string-array>
-    <string-array name="ANG">
+        <item>@drawable/flag_armenia</item>
+    </array>
+    <array name="ANG">
         <item>Netherlands Antillian Guilder</item>
-        <item>flag_curacao</item>
-    </string-array>
-    <string-array name="AOA">
+        <item>@drawable/flag_curacao</item>
+    </array>
+    <array name="AOA">
         <item>Angolan Kwanz</item>
-        <item>flag_angola</item>
-    </string-array>
-    <string-array name="ARS">
+        <item>@drawable/flag_angola</item>
+    </array>
+    <array name="ARS">
         <item>Argentine Peso</item>
-        <item>flag_argentina</item>
-    </string-array>
-    <string-array name="AUD">
+        <item>@drawable/flag_argentina</item>
+    </array>
+    <array name="AUD">
         <item>Australian Dollar</item>
-        <item>flag_australia</item>
-    </string-array>
-    <string-array name="AZN">
+        <item>@drawable/flag_australia</item>
+    </array>
+    <array name="AZN">
         <item>Azerbaijani Manat</item>
-        <item>flag_azerbaijan</item>
-    </string-array>
-    <string-array name="BBD">
+        <item>@drawable/flag_azerbaijan</item>
+    </array>
+    <array name="BBD">
         <item>Barbados Dollar</item>
-        <item>flag_barbados</item>
-    </string-array>
-    <string-array name="BDT">
+        <item>@drawable/flag_barbados</item>
+    </array>
+    <array name="BDT">
         <item>Bangladeshi Taka</item>
-        <item>flag_bangladesh</item>
-    </string-array>
-    <string-array name="BGN">
+        <item>@drawable/flag_bangladesh</item>
+    </array>
+    <array name="BGN">
         <item>Bulgarian Lev</item>
-        <item>flag_bulgaria</item>
-    </string-array>
-    <string-array name="BHD">
+        <item>@drawable/flag_bulgaria</item>
+    </array>
+    <array name="BHD">
         <item>Bahraini Dinar</item>
-        <item>flag_bahrain</item>
-    </string-array>
-    <string-array name="BRL">
+        <item>@drawable/flag_bahrain</item>
+    </array>
+    <array name="BRL">
         <item>Brazilian Real</item>
-        <item>flag_brazil</item>
-    </string-array>
-    <string-array name="BSD">
+        <item>@drawable/flag_brazil</item>
+    </array>
+    <array name="BSD">
         <item>Bahamian Dollar</item>
-        <item>flag_bahamas</item>
-    </string-array>
-    <string-array name="BWP">
+        <item>@drawable/flag_bahamas</item>
+    </array>
+    <array name="BWP">
         <item>Botswana Pula</item>
-        <item>flag_botswana</item>
-    </string-array>
-    <string-array name="BYN">
+        <item>@drawable/flag_botswana</item>
+    </array>
+    <array name="BYN">
         <item>Belarusian Ruble</item>
-        <item>flag_belarus</item>
-    </string-array>
-    <string-array name="CAD">
+        <item>@drawable/flag_belarus</item>
+    </array>
+    <array name="CAD">
         <item>Canadian Dollar</item>
-        <item>flag_canada</item>
-    </string-array>
-    <string-array name="CHF">
+        <item>@drawable/flag_canada</item>
+    </array>
+    <array name="CHF">
         <item>Swiss Fran</item>
-        <item>flag_switzerland</item>
-    </string-array>
-    <string-array name="CLP">
+        <item>@drawable/flag_switzerland</item>
+    </array>
+    <array name="CLP">
         <item>Chilean Peso</item>
-        <item>flag_chile</item>
-    </string-array>
-    <string-array name="CNY">
+        <item>@drawable/flag_chile</item>
+    </array>
+    <array name="CNY">
         <item>Chinese Yuan Renminbi</item>
-        <item>flag_china</item>
-    </string-array>
-    <string-array name="COP">
+        <item>@drawable/flag_china</item>
+    </array>
+    <array name="COP">
         <item>Colombian Peso</item>
-        <item>flag_colombia</item>
-    </string-array>
-    <string-array name="CZK">
+        <item>@drawable/flag_colombia</item>
+    </array>
+    <array name="CZK">
         <item>Czech Koruna</item>
-        <item>flag_czech_republic</item>
-    </string-array>
-    <string-array name="DKK">
+        <item>@drawable/flag_czech_republic</item>
+    </array>
+    <array name="DKK">
         <item>Danish Krone</item>
-        <item>flag_denmark</item>
-    </string-array>
-    <string-array name="DOP">
+        <item>@drawable/flag_denmark</item>
+    </array>
+    <array name="DOP">
         <item>Dominican Peso</item>
-        <item>flag_dominican_republic</item>
-    </string-array>
-    <string-array name="EGP">
+        <item>@drawable/flag_dominican_republic</item>
+    </array>
+    <array name="EGP">
         <item>Egyptian Pound</item>
-        <item>flag_egypt</item>
-    </string-array>
-    <string-array name="ETB">
+        <item>@drawable/flag_egypt</item>
+    </array>
+    <array name="ETB">
         <item>Ethiopian Birr</item>
-        <item>flag_ethiopia</item>
-    </string-array>
-    <string-array name="EUR">
+        <item>@drawable/flag_ethiopia</item>
+    </array>
+    <array name="EUR">
         <item>Euro</item>
-        <item>flag_european_union</item>
-    </string-array>
-    <string-array name="FJD">
+        <item>@drawable/flag_european_union</item>
+    </array>
+    <array name="FJD">
         <item>Fiji Dollar</item>
-        <item>flag_fiji</item>
-    </string-array>
-    <string-array name="GBP">
+        <item>@drawable/flag_fiji</item>
+    </array>
+    <array name="GBP">
         <item>Pound Sterling</item>
-        <item>flag_united_kingdom</item>
-    </string-array>
-    <string-array name="GEL">
+        <item>@drawable/flag_united_kingdom</item>
+    </array>
+    <array name="GEL">
         <item>Georgian Lari</item>
-        <item>flag_georgia</item>
-    </string-array>
-    <string-array name="GHS">
+        <item>@drawable/flag_georgia</item>
+    </array>
+    <array name="GHS">
         <item>Ghanaian Cedi</item>
-        <item>flag_ghana</item>
-    </string-array>
-    <string-array name="GTQ">
+        <item>@drawable/flag_ghana</item>
+    </array>
+    <array name="GTQ">
         <item>Guatemalan Quetzal</item>
-        <item>flag_guatemala</item>
-    </string-array>
-    <string-array name="HKD">
+        <item>@drawable/flag_guatemala</item>
+    </array>
+    <array name="HKD">
         <item>Hong Kong Dollar</item>
-        <item>flag_hong_kong</item>
-    </string-array>
-    <string-array name="HNL">
+        <item>@drawable/flag_hong_kong</item>
+    </array>
+    <array name="HNL">
         <item>Honduran Lempira</item>
-        <item>flag_honduras</item>
-    </string-array>
-    <string-array name="HRK">
+        <item>@drawable/flag_honduras</item>
+    </array>
+    <array name="HRK">
         <item>Croatian Kuna</item>
-        <item>flag_croatia</item>
-    </string-array>
-    <string-array name="HUF">
+        <item>@drawable/flag_croatia</item>
+    </array>
+    <array name="HUF">
         <item>Hungarian Forint</item>
-        <item>flag_hungary</item>
-    </string-array>
-    <string-array name="IDR">
+        <item>@drawable/flag_hungary</item>
+    </array>
+    <array name="IDR">
         <item>Indonesian Rupiah</item>
-        <item>flag_indonesia</item>
-    </string-array>
-    <string-array name="ILS">
+        <item>@drawable/flag_indonesia</item>
+    </array>
+    <array name="ILS">
         <item>Israeli Shekel</item>
-        <item>flag_israel</item>
-    </string-array>
-    <string-array name="INR">
+        <item>@drawable/flag_israel</item>
+    </array>
+    <array name="INR">
         <item>Indian Rupee</item>
-        <item>flag_india</item>
-    </string-array>
-    <string-array name="IQD">
+        <item>@drawable/flag_india</item>
+    </array>
+    <array name="IQD">
         <item>Iraqi Dinar</item>
-        <item>flag_iraq</item>
-    </string-array>
-    <string-array name="IRR">
+        <item>@drawable/flag_iraq</item>
+    </array>
+    <array name="IRR">
         <item>Iranian Rial</item>
-        <item>flag_iran</item>
-    </string-array>
-    <string-array name="ISK">
+        <item>@drawable/flag_iran</item>
+    </array>
+    <array name="ISK">
         <item>Icelandic Krona</item>
-        <item>flag_iceland</item>
-    </string-array>
-    <string-array name="JMD">
+        <item>@drawable/flag_iceland</item>
+    </array>
+    <array name="JMD">
         <item>Jamaican Dollar</item>
-        <item>flag_jamaica</item>
-    </string-array>
-    <string-array name="JOD">
+        <item>@drawable/flag_jamaica</item>
+    </array>
+    <array name="JOD">
         <item>Jordanian Dinar</item>
-        <item>flag_jordan</item>
-    </string-array>
-    <string-array name="JPY">
+        <item>@drawable/flag_jordan</item>
+    </array>
+    <array name="JPY">
         <item>Japanese Yen</item>
-        <item>flag_japan</item>
-    </string-array>
-    <string-array name="KES">
+        <item>@drawable/flag_japan</item>
+    </array>
+    <array name="KES">
         <item>Kenyan Shilling</item>
-        <item>flag_kenya</item>
-    </string-array>
-    <string-array name="KHR">
+        <item>@drawable/flag_kenya</item>
+    </array>
+    <array name="KHR">
         <item>Cambodian Riel</item>
-        <item>flag_cambodia</item>
-    </string-array>
-    <string-array name="KRW">
+        <item>@drawable/flag_cambodia</item>
+    </array>
+    <array name="KRW">
         <item>South Korean Won</item>
-        <item>flag_south_korea</item>
-    </string-array>
-    <string-array name="KWD">
+        <item>@drawable/flag_south_korea</item>
+    </array>
+    <array name="KWD">
         <item>Kuwaiti Dinar</item>
-        <item>flag_kuwait</item>
-    </string-array>
-    <string-array name="KZT">
+        <item>@drawable/flag_kuwait</item>
+    </array>
+    <array name="KZT">
         <item>Kazakhstani Tenge</item>
-        <item>flag_kazakhstan</item>
-    </string-array>
-    <string-array name="LAK">
+        <item>@drawable/flag_kazakhstan</item>
+    </array>
+    <array name="LAK">
         <item>Lao Kip</item>
-        <item>flag_laos</item>
-    </string-array>
-    <string-array name="LBP">
+        <item>@drawable/flag_laos</item>
+    </array>
+    <array name="LBP">
         <item>Lebanese Pound</item>
-        <item>flag_lebanon</item>
-    </string-array>
-    <string-array name="LKR">
+        <item>@drawable/flag_lebanon</item>
+    </array>
+    <array name="LKR">
         <item>Sri Lanka Rupee</item>
-        <item>flag_sri_lanka</item>
-    </string-array>
-    <string-array name="MAD">
+        <item>@drawable/flag_sri_lanka</item>
+    </array>
+    <array name="MAD">
         <item>Moroccan Dirham</item>
-        <item>flag_morocco</item>
-    </string-array>
-    <string-array name="MDL">
+        <item>@drawable/flag_morocco</item>
+    </array>
+    <array name="MDL">
         <item>Moldovan Leu</item>
-        <item>flag_moldova</item>
-    </string-array>
-    <string-array name="MKD">
+        <item>@drawable/flag_moldova</item>
+    </array>
+    <array name="MKD">
         <item>Macedonian Denar</item>
-        <item>flag_republic_of_macedonia</item>
-    </string-array>
-    <string-array name="MMK">
+        <item>@drawable/flag_republic_of_macedonia</item>
+    </array>
+    <array name="MMK">
         <item>Myanmar Kyat</item>
-        <item>flag_myanmar</item>
-    </string-array>
-    <string-array name="MUR">
+        <item>@drawable/flag_myanmar</item>
+    </array>
+    <array name="MUR">
         <item>Mauritian Rupee</item>
-        <item>flag_mauritius</item>
-    </string-array>
-    <string-array name="MXN">
+        <item>@drawable/flag_mauritius</item>
+    </array>
+    <array name="MXN">
         <item>Mexican Peso</item>
-        <item>flag_mexico</item>
-    </string-array>
-    <string-array name="MYR">
+        <item>@drawable/flag_mexico</item>
+    </array>
+    <array name="MYR">
         <item>Malaysian Ringgit</item>
-        <item>flag_malaysia</item>
-    </string-array>
-    <string-array name="NAD">
+        <item>@drawable/flag_malaysia</item>
+    </array>
+    <array name="NAD">
         <item>Namibian Dollar</item>
-        <item>flag_namibia</item>
-    </string-array>
-    <string-array name="NGN">
+        <item>@drawable/flag_namibia</item>
+    </array>
+    <array name="NGN">
         <item>Nigerian Naira</item>
-        <item>flag_nigeria</item>
-    </string-array>
-    <string-array name="NOK">
+        <item>@drawable/flag_nigeria</item>
+    </array>
+    <array name="NOK">
         <item>Norwegian Krone</item>
-        <item>flag_norway</item>
-    </string-array>
-    <string-array name="NZD">
+        <item>@drawable/flag_norway</item>
+    </array>
+    <array name="NZD">
         <item>New Zealand Dollar</item>
-        <item>flag_new_zealand</item>
-    </string-array>
-    <string-array name="OMR">
+        <item>@drawable/flag_new_zealand</item>
+    </array>
+    <array name="OMR">
         <item>Omani Rial</item>
-        <item>flag_oman</item>
-    </string-array>
-    <string-array name="PAB">
+        <item>@drawable/flag_oman</item>
+    </array>
+    <array name="PAB">
         <item>Panamanian Balboa</item>
-        <item>flag_panama</item>
-    </string-array>
-    <string-array name="PEN">
+        <item>@drawable/flag_panama</item>
+    </array>
+    <array name="PEN">
         <item>Peruvian Nuevo Sol</item>
-        <item>flag_peru</item>
-    </string-array>
-    <string-array name="PGK">
+        <item>@drawable/flag_peru</item>
+    </array>
+    <array name="PGK">
         <item>Papua New Guinean Kina</item>
-        <item>flag_papua_new_guinea</item>
-    </string-array>
-    <string-array name="PHP">
+        <item>@drawable/flag_papua_new_guinea</item>
+    </array>
+    <array name="PHP">
         <item>Philippine Peso</item>
-        <item>flag_philippines</item>
-    </string-array>
-    <string-array name="PKR">
+        <item>@drawable/flag_philippines</item>
+    </array>
+    <array name="PKR">
         <item>Pakistani Rupee</item>
-        <item>flag_pakistan</item>
-    </string-array>
-    <string-array name="PLN">
+        <item>@drawable/flag_pakistan</item>
+    </array>
+    <array name="PLN">
         <item>Polish Zloty</item>
-        <item>flag_republic_of_poland</item>
-    </string-array>
-    <string-array name="PYG">
+        <item>@drawable/flag_republic_of_poland</item>
+    </array>
+    <array name="PYG">
         <item>Paraguayan Guarani</item>
-        <item>flag_paraguay</item>
-    </string-array>
-    <string-array name="QAR">
+        <item>@drawable/flag_paraguay</item>
+    </array>
+    <array name="QAR">
         <item>Qatari Riyal</item>
-        <item>flag_qatar</item>
-    </string-array>
-    <string-array name="RON">
+        <item>@drawable/flag_qatar</item>
+    </array>
+    <array name="RON">
         <item>Romanian Leu</item>
-        <item>flag_romania</item>
-    </string-array>
-    <string-array name="RSD">
+        <item>@drawable/flag_romania</item>
+    </array>
+    <array name="RSD">
         <item>Serbian Dinar</item>
-        <item>flag_serbia</item>
-    </string-array>
-    <string-array name="RUB">
+        <item>@drawable/flag_serbia</item>
+    </array>
+    <array name="RUB">
         <item>Russian Ruble</item>
-        <item>flag_russia</item>
-    </string-array>
-    <string-array name="SAR">
+        <item>@drawable/flag_russia</item>
+    </array>
+    <array name="SAR">
         <item>Saudi Riyal</item>
-        <item>flag_saudi_arabia</item>
-    </string-array>
-    <string-array name="SCR">
+        <item>@drawable/flag_saudi_arabia</item>
+    </array>
+    <array name="SCR">
         <item>Seychellois Rupee</item>
-        <item>flag_seychelles</item>
-    </string-array>
-    <string-array name="SEK">
+        <item>@drawable/flag_seychelles</item>
+    </array>
+    <array name="SEK">
         <item>Swedish Krona</item>
-        <item>flag_sweden</item>
-    </string-array>
-    <string-array name="SGD">
+        <item>@drawable/flag_sweden</item>
+    </array>
+    <array name="SGD">
         <item>Singapore Dollar</item>
-        <item>flag_singapore</item>
-    </string-array>
-    <string-array name="THB">
+        <item>@drawable/flag_singapore</item>
+    </array>
+    <array name="THB">
         <item>Thai Baht</item>
-        <item>flag_thailand</item>
-    </string-array>
-    <string-array name="TJS">
+        <item>@drawable/flag_thailand</item>
+    </array>
+    <array name="TJS">
         <item>Tajikistani Somoni</item>
-        <item>flag_tajikistan</item>
-    </string-array>
-    <string-array name="TND">
+        <item>@drawable/flag_tajikistan</item>
+    </array>
+    <array name="TND">
         <item>Tunisian Dinar</item>
-        <item>flag_tunisia</item>
-    </string-array>
-    <string-array name="TRY">
+        <item>@drawable/flag_tunisia</item>
+    </array>
+    <array name="TRY">
         <item>Turkish Lira</item>
-        <item>flag_turkey</item>
-    </string-array>
-    <string-array name="TTD">
+        <item>@drawable/flag_turkey</item>
+    </array>
+    <array name="TTD">
         <item>Trinidad And Tobago Dollar</item>
-        <item>flag_trinidad_and_tobago</item>
-    </string-array>
-    <string-array name="TWD">
+        <item>@drawable/flag_trinidad_and_tobago</item>
+    </array>
+    <array name="TWD">
         <item>New Taiwan Dollar</item>
-        <item>flag_taiwan</item>
-    </string-array>
-    <string-array name="TZS">
+        <item>@drawable/flag_taiwan</item>
+    </array>
+    <array name="TZS">
         <item>Tanzanian Shilling</item>
-        <item>flag_tanzania</item>
-    </string-array>
-    <string-array name="UAH">
+        <item>@drawable/flag_tanzania</item>
+    </array>
+    <array name="UAH">
         <item>Ukrainian Hryvnia</item>
-        <item>flag_ukraine</item>
-    </string-array>
-    <string-array name="USD">
+        <item>@drawable/flag_ukraine</item>
+    </array>
+    <array name="USD">
         <item>US Dollar</item>
-        <item>flag_united_states_of_america</item>
-    </string-array>
-    <string-array name="UYU">
+        <item>@drawable/flag_united_states_of_america</item>
+    </array>
+    <array name="UYU">
         <item>Uruguayan Peso</item>
-        <item>flag_uruguay</item>
-    </string-array>
-    <string-array name="UZS">
+        <item>@drawable/flag_uruguay</item>
+    </array>
+    <array name="UZS">
         <item>Uzbekistani Som</item>
-        <item>flag_uzbekistan</item>
-    </string-array>
-    <string-array name="VEF">
+        <item>@drawable/flag_uzbekistan</item>
+    </array>
+    <array name="VEF">
         <item>Venezuelan Bolivar Fuerte</item>
-        <item>flag_venezuela</item>
-    </string-array>
-    <string-array name="VND">
+        <item>@drawable/flag_venezuela</item>
+    </array>
+    <array name="VND">
         <item>Vietnamese Dong</item>
-        <item>flag_vietnam</item>
-    </string-array>
-    <string-array name="XAF">
+        <item>@drawable/flag_vietnam</item>
+    </array>
+    <array name="XAF">
         <item>CFA Franc Central</item>
-        <item>flag_cameroon</item>
-    </string-array>
-    <string-array name="XCD">
+        <item>@drawable/flag_cameroon</item>
+    </array>
+    <array name="XCD">
         <item>East Caribbean Dollar</item>
-        <item>flag_anguilla</item>
-    </string-array>
-    <string-array name="XOF">
+        <item>@drawable/flag_anguilla</item>
+    </array>
+    <array name="XOF">
         <item>CFA Franc West</item>
-        <item>flag_benin</item>
-    </string-array>
-    <string-array name="XPF">
+        <item>@drawable/flag_benin</item>
+    </array>
+    <array name="XPF">
         <item>French Pacific Francs</item>
-        <item>flag_french_polynesia</item>
-    </string-array>
-    <string-array name="ZAR">
+        <item>@drawable/flag_french_polynesia</item>
+    </array>
+    <array name="ZAR">
         <item>South African Rand</item>
-        <item>flag_south_africa</item>
-    </string-array>
-    <string-array name="ZMW">
+        <item>@drawable/flag_south_africa</item>
+    </array>
+    <array name="ZMW">
         <item>Zambian Kwacha</item>
-        <item>flag_zambia</item>
-    </string-array>
+        <item>@drawable/flag_zambia</item>
+    </array>
 
 </resources>

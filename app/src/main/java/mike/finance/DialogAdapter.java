@@ -1,4 +1,4 @@
-package mike.finance.rates;
+package mike.finance;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,11 +15,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import mike.finance.CurrencyInformation;
-import mike.finance.MathOperations;
-import mike.finance.R;
 
-public class RatesAdapter extends BaseAdapter {
+public class DialogAdapter extends BaseAdapter {
 
     private Context context;
     private LayoutInflater inflater;
@@ -28,15 +24,12 @@ public class RatesAdapter extends BaseAdapter {
     private List<CurrencyInformation> list;
     private SharedPreferences preferences;
 
-    public RatesAdapter(Context context) {
+    public DialogAdapter(Context context, List<CurrencyInformation> currencyList) {
         this.context = context;
         inflater = LayoutInflater.from(context);
-        this.preferences = PreferenceManager.getDefaultSharedPreferences(context);
-    }
-
-    public void setCurrencyList(List<CurrencyInformation> currencyList) {
         this.currencyList = currencyList;
         list = new ArrayList<>(currencyList);
+        preferences = PreferenceManager.getDefaultSharedPreferences(context);
     }
 
     @Override
@@ -58,7 +51,7 @@ public class RatesAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder;
         if (convertView == null) {
-            convertView = inflater.inflate(R.layout.rates_list_item, parent, false);
+            convertView = inflater.inflate(R.layout.dialog_list_item, parent, false);
             viewHolder = new ViewHolder(convertView);
             convertView.setTag(viewHolder);
         } else {
@@ -68,42 +61,20 @@ public class RatesAdapter extends BaseAdapter {
         CurrencyInformation currencyListItem = (CurrencyInformation) getItem(position);
         viewHolder.currencyCode.setText(currencyListItem.getCode());
         viewHolder.currencyName.setText(currencyListItem.getName());
-        viewHolder.currencyIcon.setImageResource(currencyListItem.getIcon());
-        viewHolder.currencyRate.setText(MathOperations.setRightRate(context, currencyListItem.getRate()));
-
-        String key = currencyListItem.getCode() + context.getString(R.string.is_favorite);
-        if (!preferences.getBoolean(key, false)) {
-            viewHolder.isFavorite.setImageResource(R.drawable.ic_favorite_inactive);
+        if (preferences.getBoolean(currencyListItem.getCode() + context
+                .getString(R.string.is_favorite), false)) {
+            viewHolder.favIcon.setImageResource(R.drawable.ic_favorite_active);
         } else {
-            viewHolder.isFavorite.setImageResource(R.drawable.ic_favorite_active);
+            viewHolder.favIcon.setImageDrawable(null);
         }
-
-        viewHolder.isFavorite.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                SharedPreferences.Editor editor = preferences.edit();
-                if (!preferences.getBoolean(key, false)) {
-                    viewHolder.isFavorite.setImageResource(R.drawable.ic_favorite_active);
-                    editor.putBoolean(key, true);
-                    editor.apply();
-                } else {
-                    viewHolder.isFavorite.setImageResource(R.drawable.ic_favorite_inactive);
-                    editor.putBoolean(key, false);
-                    editor.apply();
-                }
-                return false;
-            }
-        });
 
         return convertView;
     }
 
     static class ViewHolder {
-        @BindView(R.id.currency_code) TextView currencyCode;
-        @BindView(R.id.currency_name) TextView currencyName;
-        @BindView(R.id.currency_icon) ImageView currencyIcon;
-        @BindView(R.id.currency_rate) TextView currencyRate;
-        @BindView(R.id.favorite_button) ImageButton isFavorite;
+        @BindView(R.id.dialog_currency_code) TextView currencyCode;
+        @BindView(R.id.dialog_currency_name) TextView currencyName;
+        @BindView(R.id.dialog_fav_icon) ImageView favIcon;
 
         public ViewHolder(View view) {
             ButterKnife.bind(this, view);
@@ -128,3 +99,4 @@ public class RatesAdapter extends BaseAdapter {
         notifyDataSetChanged();
     }
 }
+

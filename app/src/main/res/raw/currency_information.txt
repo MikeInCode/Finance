@@ -1,5 +1,0 @@
-
-XOF:CFA franc BCEAO:flag_benin
-XPF:CFP franc (franc Pacifique):flag_french_polynesia
-ZAR:South African rand:flag_south_africa
-ZMW:Zambian kwacha:flag_zambia

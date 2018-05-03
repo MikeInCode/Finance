@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/base_currency_btn"
+        android:title="UAH"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/search_btn"
+        android:icon="@drawable/ic_search"
+        android:title="Search"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        app:showAsAction="always|collapseActionView" />
+
+    <item
+        android:id="@+id/refresh_btn"
+        android:title="Refresh"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/sort_btn"
+        android:title="Sort"
+        app:showAsAction="never" />
+
+    <item
+        android:title="Sorting type"
+        app:showAsAction="never">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/sort_by_name"
+                    android:checked="true"
+                    android:title="Sort by name" />
+                <item
+                    android:id="@+id/sort_by_value"
+                    android:title="Sort by value" />
+            </group>
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/show_only_favorites_btn"
+        android:checkable="true"
+        android:title="Only favorites"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/settings_btn"
+        android:title="Settings"
+        app:showAsAction="never" />
+</menu>

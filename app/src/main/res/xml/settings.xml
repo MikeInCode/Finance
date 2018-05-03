@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <CheckBoxPreference
+        android:defaultValue="Showing all currencies"
+        android:key="show_favorites"
+        android:summary="Showing all currencies"
+        android:title="Show favorites" />
+
+</PreferenceScreen>

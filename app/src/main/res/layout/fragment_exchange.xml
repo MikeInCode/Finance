@@ -20,333 +20,409 @@
 
     </include>
 
-    <ImageView
-        android:id="@+id/from_currency_icon"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/flag_united_states_of_america"
-        app:layout_constraintBottom_toTopOf="@+id/exchange_switcher"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="spread_inside" />
-
-    <TextView
-        android:id="@+id/from_currency_code"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
-        android:drawableEnd="@drawable/ic_drop_down_arrow"
-        android:textColor="@android:color/black"
-        android:textSize="22sp"
-        app:layout_constraintStart_toEndOf="@+id/from_currency_icon"
-        app:layout_constraintTop_toTopOf="@+id/from_currency_icon"
-        tools:text="USD" />
-
-    <TextView
-        android:id="@+id/from_currency_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@android:color/black"
-        android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="@+id/from_currency_code"
-        app:layout_constraintTop_toBottomOf="@+id/from_currency_code"
-        tools:text="US Dollar" />
-
-    <TextView
-        android:id="@+id/from_currency_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:maxWidth="180dp"
-        android:textColor="@android:color/black"
-        android:textSize="22sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/from_currency_code"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:text="1" />
-
-    <ImageButton
-        android:id="@+id/exchange_switcher"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:src="@drawable/ic_switch"
-        app:layout_constraintBottom_toTopOf="@+id/to_currency_icon"
-        app:layout_constraintEnd_toEndOf="@+id/from_currency_icon"
-        app:layout_constraintStart_toStartOf="@+id/from_currency_icon"
-        app:layout_constraintTop_toBottomOf="@+id/from_currency_icon" />
-
-    <ImageView
-        android:id="@+id/to_currency_icon"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginBottom="24dp"
-        android:layout_marginStart="16dp"
-        android:src="@drawable/flag_ukraine"
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/exchange_switcher" />
-
-    <TextView
-        android:id="@+id/to_currency_code"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
-        android:drawableEnd="@drawable/ic_drop_down_arrow"
-        android:textColor="@android:color/black"
-        android:textSize="22sp"
-        app:layout_constraintStart_toEndOf="@+id/to_currency_icon"
-        app:layout_constraintTop_toTopOf="@+id/to_currency_icon"
-        tools:text="UAH" />
-
-    <TextView
-        android:id="@+id/to_currency_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@android:color/black"
-        android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="@+id/to_currency_code"
-        app:layout_constraintTop_toBottomOf="@+id/to_currency_code"
-        tools:text="Ukrainian Hryvnia" />
-
-    <TextView
-        android:id="@+id/to_currency_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:maxWidth="180dp"
-        android:textColor="@android:color/black"
-        android:textSize="22sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/to_currency_code"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:text="27.3" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/from_currency_icon"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/flag_united_states_of_america"
+            app:layout_constraintBottom_toTopOf="@+id/line2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/from_currency_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:drawableEnd="@drawable/ic_drop_down_arrow"
+            android:textColor="@android:color/black"
+            android:textSize="22sp"
+            app:layout_constraintStart_toEndOf="@+id/from_currency_icon"
+            app:layout_constraintTop_toTopOf="@+id/from_currency_icon"
+            tools:text="USD" />
+
+        <TextView
+            android:id="@+id/from_currency_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/from_currency_code"
+            app:layout_constraintTop_toBottomOf="@+id/from_currency_code"
+            tools:text="US Dollar" />
+
+        <TextView
+            android:id="@+id/from_currency_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:maxWidth="180dp"
+            android:textColor="@android:color/black"
+            android:textSize="22sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/from_currency_code"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:alpha="0.7"
+            android:text="input"
+            android:textAllCaps="true"
+            android:textColor="@color/primaryGreen"
+            android:textSize="10sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/from_currency_name"
+            app:layout_constraintEnd_toEndOf="@+id/from_currency_value" />
+
+        <View
+            android:id="@+id/line1"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:background="@color/line"
+            app:layout_constraintBottom_toBottomOf="@+id/exchange_switcher"
+            app:layout_constraintEnd_toStartOf="@+id/exchange_switcher"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/exchange_switcher" />
+
+        <View
+            android:id="@+id/line2"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:background="@color/line"
+            app:layout_constraintBottom_toBottomOf="@+id/exchange_switcher"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/exchange_switcher"
+            app:layout_constraintTop_toTopOf="@+id/exchange_switcher" />
+
+        <ImageButton
+            android:id="@+id/exchange_switcher"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_switch"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/from_currency_icon"
+            app:layout_constraintStart_toStartOf="@+id/from_currency_icon"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/to_currency_icon"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/flag_ukraine"
+            app:layout_constraintBottom_toTopOf="@+id/line3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/line2" />
+
+        <TextView
+            android:id="@+id/to_currency_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:drawableEnd="@drawable/ic_drop_down_arrow"
+            android:textColor="@android:color/black"
+            android:textSize="22sp"
+            app:layout_constraintStart_toEndOf="@+id/to_currency_icon"
+            app:layout_constraintTop_toTopOf="@+id/to_currency_icon"
+            tools:text="UAH" />
+
+        <TextView
+            android:id="@+id/to_currency_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/to_currency_code"
+            app:layout_constraintTop_toBottomOf="@+id/to_currency_code"
+            tools:text="Ukrainian Hryvnia" />
+
+        <TextView
+            android:id="@+id/to_currency_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:maxWidth="180dp"
+            android:textColor="@android:color/black"
+            android:textSize="22sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/to_currency_code"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="27.3" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:alpha="0.7"
+            android:text="output"
+            android:textAllCaps="true"
+            android:textColor="@color/primaryGreen"
+            android:textSize="10sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/to_currency_name"
+            app:layout_constraintEnd_toEndOf="@+id/to_currency_value" />
+
+        <View
+            android:id="@+id/line3"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/line"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.48" />
+        app:layout_constraintGuide_percent="0.42" />
 
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_end="12dp" />
-
-    <Button
-        android:id="@+id/clear_all"
-        style="@style/ExchangeKeyboard"
+    <android.support.constraint.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="4dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
-        android:text="AC"
-        app:layout_constraintBottom_toTopOf="@+id/seven"
-        app:layout_constraintEnd_toStartOf="@+id/clear_last"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="spread_inside"
-        app:layout_constraintHorizontal_weight="1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline" />
-
-    <Button
-        android:id="@+id/clear_last"
-        style="@style/ExchangeKeyboard"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="4dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
-        android:text="DEL"
-        app:layout_constraintBottom_toTopOf="@+id/nine"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_weight="2"
-        app:layout_constraintStart_toEndOf="@+id/clear_all"
-        app:layout_constraintTop_toTopOf="@+id/guideline" />
-
-    <Button
-        android:id="@+id/seven"
-        style="@style/ExchangeKeyboard"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="4dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
-        android:text="7"
-        app:layout_constraintBottom_toTopOf="@+id/four"
-        app:layout_constraintEnd_toStartOf="@+id/eight"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/clear_all" />
+        app:layout_constraintTop_toTopOf="@+id/guideline">
 
-    <Button
-        android:id="@+id/eight"
-        style="@style/ExchangeKeyboard"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:text="8"
-        app:layout_constraintBottom_toBottomOf="@+id/seven"
-        app:layout_constraintEnd_toStartOf="@+id/nine"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/seven"
-        app:layout_constraintTop_toTopOf="@+id/seven" />
+        <Button
+            android:id="@+id/clear_all"
+            style="@style/ExchangeKeyboard"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="AC"
+            app:layout_constraintBottom_toTopOf="@+id/seven"
+            app:layout_constraintEnd_toStartOf="@+id/clear_last"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/nine"
-        style="@style/ExchangeKeyboard"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="4dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
-        android:text="9"
-        app:layout_constraintBottom_toTopOf="@+id/six"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/eight"
-        app:layout_constraintTop_toBottomOf="@+id/clear_last" />
+        <Button
+            android:id="@+id/clear_last"
+            style="@style/ExchangeKeyboard"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:text="DEL"
+            app:layout_constraintBottom_toTopOf="@+id/nine"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_weight="2"
+            app:layout_constraintStart_toEndOf="@+id/clear_all"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/four"
-        style="@style/ExchangeKeyboard"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="4dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
-        android:text="4"
-        app:layout_constraintBottom_toTopOf="@+id/one"
-        app:layout_constraintEnd_toStartOf="@+id/five"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="spread_inside"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/seven" />
+        <Button
+            android:id="@+id/seven"
+            style="@style/ExchangeKeyboard"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:text="7"
+            app:layout_constraintBottom_toTopOf="@+id/four"
+            app:layout_constraintEnd_toStartOf="@+id/eight"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/clear_all" />
 
-    <Button
-        android:id="@+id/five"
-        style="@style/ExchangeKeyboard"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:text="5"
-        app:layout_constraintBottom_toBottomOf="@+id/four"
-        app:layout_constraintEnd_toStartOf="@+id/six"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/four"
-        app:layout_constraintTop_toTopOf="@+id/four" />
+        <Button
+            android:id="@+id/eight"
+            style="@style/ExchangeKeyboard"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:text="8"
+            app:layout_constraintBottom_toBottomOf="@+id/seven"
+            app:layout_constraintEnd_toStartOf="@+id/nine"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/seven"
+            app:layout_constraintTop_toTopOf="@+id/seven" />
 
-    <Button
-        android:id="@+id/six"
-        style="@style/ExchangeKeyboard"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="4dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
-        android:text="6"
-        app:layout_constraintBottom_toTopOf="@+id/three"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/five"
-        app:layout_constraintTop_toBottomOf="@+id/nine" />
+        <Button
+            android:id="@+id/nine"
+            style="@style/ExchangeKeyboard"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:text="9"
+            app:layout_constraintBottom_toTopOf="@+id/six"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/eight"
+            app:layout_constraintTop_toBottomOf="@+id/clear_last" />
 
-    <Button
-        android:id="@+id/one"
-        style="@style/ExchangeKeyboard"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="4dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
-        android:text="1"
-        app:layout_constraintBottom_toTopOf="@+id/zero"
-        app:layout_constraintEnd_toStartOf="@+id/two"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="spread_inside"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/four" />
+        <Button
+            android:id="@+id/four"
+            style="@style/ExchangeKeyboard"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:text="4"
+            app:layout_constraintBottom_toTopOf="@+id/one"
+            app:layout_constraintEnd_toStartOf="@+id/five"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/seven" />
 
-    <Button
-        android:id="@+id/two"
-        style="@style/ExchangeKeyboard"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:text="2"
-        app:layout_constraintBottom_toBottomOf="@+id/one"
-        app:layout_constraintEnd_toStartOf="@+id/three"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/one"
-        app:layout_constraintTop_toTopOf="@+id/one" />
+        <Button
+            android:id="@+id/five"
+            style="@style/ExchangeKeyboard"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:text="5"
+            app:layout_constraintBottom_toBottomOf="@+id/four"
+            app:layout_constraintEnd_toStartOf="@+id/six"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/four"
+            app:layout_constraintTop_toTopOf="@+id/four" />
 
-    <Button
-        android:id="@+id/three"
-        style="@style/ExchangeKeyboard"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="4dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
-        android:text="3"
-        app:layout_constraintBottom_toTopOf="@+id/dot"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/two"
-        app:layout_constraintTop_toBottomOf="@+id/six" />
+        <Button
+            android:id="@+id/six"
+            style="@style/ExchangeKeyboard"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:text="6"
+            app:layout_constraintBottom_toTopOf="@+id/three"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/five"
+            app:layout_constraintTop_toBottomOf="@+id/nine" />
 
-    <Button
-        android:id="@+id/zero"
-        style="@style/ExchangeKeyboard"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="4dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
-        android:text="0"
-        app:layout_constraintBottom_toTopOf="@+id/guideline2"
-        app:layout_constraintEnd_toStartOf="@+id/dot"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="spread_inside"
-        app:layout_constraintHorizontal_weight="2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/one" />
+        <Button
+            android:id="@+id/one"
+            style="@style/ExchangeKeyboard"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:text="1"
+            app:layout_constraintBottom_toTopOf="@+id/zero"
+            app:layout_constraintEnd_toStartOf="@+id/two"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/four" />
 
-    <Button
-        android:id="@+id/dot"
-        style="@style/ExchangeKeyboard"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="4dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
-        android:text="."
-        app:layout_constraintBottom_toTopOf="@+id/guideline2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_weight="1"
-        app:layout_constraintStart_toEndOf="@+id/zero"
-        app:layout_constraintTop_toBottomOf="@+id/three" />
+        <Button
+            android:id="@+id/two"
+            style="@style/ExchangeKeyboard"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:text="2"
+            app:layout_constraintBottom_toBottomOf="@+id/one"
+            app:layout_constraintEnd_toStartOf="@+id/three"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/one"
+            app:layout_constraintTop_toTopOf="@+id/one" />
+
+        <Button
+            android:id="@+id/three"
+            style="@style/ExchangeKeyboard"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:text="3"
+            app:layout_constraintBottom_toTopOf="@+id/dot"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/two"
+            app:layout_constraintTop_toBottomOf="@+id/six" />
+
+        <Button
+            android:id="@+id/zero"
+            style="@style/ExchangeKeyboard"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:text="0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/dot"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintHorizontal_weight="2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/one" />
+
+        <Button
+            android:id="@+id/dot"
+            style="@style/ExchangeKeyboard"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:text="."
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/zero"
+            app:layout_constraintTop_toBottomOf="@+id/three" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="20dp" />
+
+    </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>

@@ -1,6 +1,5 @@
 package mike.finance;
 
-
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -15,19 +14,19 @@ import mike.finance.rates.RatesFragment;
 public class MainActivity extends AppCompatActivity implements
         BottomNavigationView.OnNavigationItemSelectedListener {
 
-    private RatesFragment ratesFragment;
-    private ExchangeFragment exchangeFragment;
+    private RatesFragment ratesFragment = new RatesFragment();
+    private ExchangeFragment exchangeFragment = new ExchangeFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        ratesFragment = new RatesFragment();
-        exchangeFragment = new ExchangeFragment();
+        getIntent().putExtra("data_manager", new DataManager(findViewById(android.R.id.content)));
 
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_content, ratesFragment).commit();
@@ -39,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
         switch (item.getItemId()) {
             case R.id.navigation_rates:
                 transaction.replace(R.id.fragment_content, ratesFragment).commit();

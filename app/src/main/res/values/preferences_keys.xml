@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="base_currency">base_currency</string>
+    <string name="show_favorites">show_favorites</string>
+    <string name="is_favorite">_is_favorite</string>
+    <string name="decimal_digits">decimal_digits</string>
+</resources>

@@ -8,6 +8,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="SplashTheme" parent="AppTheme">
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+    </style>
+
     <style name="ExchangeKeyboard">
         <item name="android:background">@drawable/rounded_button</item>
         <item name="android:textColor">@drawable/rounded_button_text</item>

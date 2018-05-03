@@ -2,4 +2,5 @@
 <resources>
     <color name="primaryGreen">#3fac4a</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="line">#d2d2d2</color>
 </resources>
