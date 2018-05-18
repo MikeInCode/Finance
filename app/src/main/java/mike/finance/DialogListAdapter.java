@@ -16,7 +16,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class DialogAdapter extends BaseAdapter {
+public class DialogListAdapter extends BaseAdapter {
 
     private Context context;
     private LayoutInflater inflater;
@@ -24,7 +24,7 @@ public class DialogAdapter extends BaseAdapter {
     private List<CurrencyInformation> list;
     private SharedPreferences preferences;
 
-    public DialogAdapter(Context context, List<CurrencyInformation> currencyList) {
+    public DialogListAdapter(Context context, List<CurrencyInformation> currencyList) {
         this.context = context;
         inflater = LayoutInflater.from(context);
         this.currencyList = currencyList;

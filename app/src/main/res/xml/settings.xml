@@ -1,10 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <CheckBoxPreference
-        android:defaultValue="Showing all currencies"
-        android:key="show_favorites"
-        android:summary="Showing all currencies"
-        android:title="Show favorites" />
+    <ListPreference
+        android:defaultValue="off"
+        android:entries="@array/auto_refresh_entries"
+        android:entryValues="@array/auto_refresh_values"
+        android:key="@string/auto_refresh"
+        android:summary="Off"
+        android:title="Auto-refresh data" />
+
+    <ListPreference
+        android:defaultValue="3"
+        android:entries="@array/number_precision_entries"
+        android:entryValues="@array/number_precision_entry_values"
+        android:key="@string/number_precision"
+        android:summary="3 digits after dot"
+        android:title="Number precision" />
+
+    <Preference
+        android:key="@string/clear_favorites"
+        android:summary="List of favorite currencies will be cleared"
+        android:title="Clear favorites" />
+
+    <Preference
+        android:key="@string/reset_settings"
+        android:summary="All settings will be reset to default"
+        android:title="Reset all settings" />
 
 </PreferenceScreen>

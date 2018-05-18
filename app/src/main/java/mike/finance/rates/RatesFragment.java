@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -19,11 +20,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import butterknife.BindString;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import mike.finance.DialogListAdapter;
 import mike.finance.CurrencyInformation;
 import mike.finance.DataManager;
-import mike.finance.DialogAdapter;
 import mike.finance.R;
 import mike.finance.SettingsActivity;
 
@@ -32,14 +37,28 @@ import mike.finance.SettingsActivity;
  */
 public class RatesFragment extends Fragment {
 
+    @BindView(R.id.rates_list_refresh) SwipeRefreshLayout refreshLayout;
+    @BindView(R.id.rates_list_view) ListView ratesListView;
+    @BindView(R.id.currency_not_found_view) TextView currencyNotFoundView;
+    @BindString(R.string.base_currency) String baseCurrencyKey;
+    @BindString(R.string.show_favorites) String showFavoritesKey;
+    @BindString(R.string.sorting_direction) String sortingDirectionKey;
+    @BindString(R.string.sorting_type) String sortingTypeKey;
+    @BindString(R.string.auto_refresh) String autoRefreshKey;
+
     private DataManager dataManager;
     private SharedPreferences preferences;
+    private Handler handler;
+    private Runnable runnable;
+    private int refreshInterval;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         setHasOptionsMenu(true);
-        return inflater.inflate(R.layout.fragment_rates, container, false);
+        View view = inflater.inflate(R.layout.fragment_rates, container, false);
+        ButterKnife.bind(this, view);
+        return view;
     }
 
     @Override
@@ -49,11 +68,9 @@ public class RatesFragment extends Fragment {
         dataManager = (DataManager) getActivity().getIntent().getSerializableExtra("data_manager");
         dataManager.getRefreshedRates();
 
-        SwipeRefreshLayout refreshLayout = view.findViewById(R.id.rates_list_refresh);
         refreshLayout.setOnChildScrollUpCallback(new SwipeRefreshLayout.OnChildScrollUpCallback() {
             @Override
             public boolean canChildScrollUp(@NonNull SwipeRefreshLayout parent, @Nullable View child) {
-                ListView ratesListView = view.findViewById(R.id.rates_list_view);
                 return ratesListView.getFirstVisiblePosition() != 0;
             }
         });
@@ -66,6 +83,34 @@ public class RatesFragment extends Fragment {
         });
 
         preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+
+        if (!preferences.getString(autoRefreshKey, "off").equals("off")) {
+            handler = new Handler();
+            runnable = new Runnable() {
+                @Override
+                public void run() {
+                    dataManager.getRefreshedRates();
+                    Toast.makeText(getContext(), "Data refreshed!", Toast.LENGTH_SHORT).show();
+                    startAutoRefresh();
+                }
+            };
+            refreshInterval = Integer.valueOf(preferences.getString(autoRefreshKey, "off"));
+            startAutoRefresh();
+        }
+    }
+
+    private void startAutoRefresh() {
+        handler.postDelayed(runnable, refreshInterval);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        try {
+            handler.removeCallbacks(runnable);
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -75,11 +120,11 @@ public class RatesFragment extends Fragment {
         inflater.inflate(R.menu.rates_toolbar_menu, menu);
 
         MenuItem changeCurrencyBtn = menu.findItem(R.id.base_currency_btn);
-        changeCurrencyBtn.setTitle(preferences.getString(getString(R.string.base_currency), "UAH"));
+        changeCurrencyBtn.setTitle(preferences.getString(baseCurrencyKey, "UAH"));
 
         MenuItem searchBtn = menu.findItem(R.id.search_btn);
         SearchView searchView = (SearchView) searchBtn.getActionView();
-        searchView.setQueryHint("Find currency");
+        searchView.setQueryHint("Search currency");
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -88,13 +133,17 @@ public class RatesFragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                dataManager.getAdapter().filter(newText);
+                if (dataManager.getAdapter().filter(newText)) {
+                    currencyNotFoundView.setVisibility(View.INVISIBLE);
+                } else {
+                    currencyNotFoundView.setVisibility(View.VISIBLE);
+                }
                 return false;
             }
         });
 
         MenuItem showFavBtn = menu.findItem(R.id.show_only_favorites_btn);
-        if (preferences.getBoolean(getString(R.string.show_favorites), false)) {
+        if (preferences.getBoolean(showFavoritesKey, false)) {
             showFavBtn.setChecked(true);
         } else {
             showFavBtn.setChecked(false);
@@ -117,19 +166,17 @@ public class RatesFragment extends Fragment {
                 AlertDialog alertDialog = alertBuilder.create();
                 alertDialog.show();
 
-                DialogAdapter dialogAdapter = new DialogAdapter(getContext(), dataManager.getDialogCurrencyList());
+                DialogListAdapter dialogListAdapter = new DialogListAdapter(getContext(), dataManager.getDialogCurrencyList());
                 ListView dialogListView = alertDialogView.findViewById(R.id.dialog_list_view);
-                dialogListView.setAdapter(dialogAdapter);
+                dialogListView.setAdapter(dialogListAdapter);
 
                 dialogListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                         CurrencyInformation currency = (CurrencyInformation) dialogListView.getItemAtPosition(i);
-                        preferences.edit().putString(getString(R.string.base_currency), currency.getCode()).apply();
+                        preferences.edit().putString(baseCurrencyKey, currency.getCode()).apply();
                         item.setTitle(currency.getCode());
                         alertDialog.dismiss();
-                        Toast.makeText(getContext(), "Base currency successfully changed!",
-                                Toast.LENGTH_SHORT).show();
                         dataManager.getRefreshedRates();
                     }
                 });
@@ -143,7 +190,7 @@ public class RatesFragment extends Fragment {
 
                     @Override
                     public boolean onQueryTextChange(String newText) {
-                        dialogAdapter.filter(newText);
+                        dialogListAdapter.filter(newText);
                         return false;
                     }
                 });
@@ -153,17 +200,44 @@ public class RatesFragment extends Fragment {
                 dataManager.getRefreshedRates();
                 Toast.makeText(getContext(), "Rates successfully updated!", Toast.LENGTH_SHORT).show();
                 break;
+            case R.id.sort_btn:
+                if (preferences.getBoolean(sortingDirectionKey, true)) {
+                    preferences.edit().putBoolean(sortingDirectionKey, false).apply();
+                } else {
+                    preferences.edit().putBoolean(sortingDirectionKey, true).apply();
+                }
+                dataManager.getRefreshedRates();
+                break;
+            case R.id.sort_by_name:
+                if (!preferences.getBoolean(sortingTypeKey, true)) {
+                    item.setChecked(true);
+                    preferences.edit().putBoolean(sortingTypeKey, true).apply();
+                    dataManager.getRefreshedRates();
+                }
+                break;
+            case R.id.sort_by_value:
+                if (preferences.getBoolean(sortingTypeKey, true)) {
+                    item.setChecked(true);
+                    preferences.edit().putBoolean(sortingTypeKey, false).apply();
+                    dataManager.getRefreshedRates();
+                }
+                break;
             case R.id.show_only_favorites_btn:
                 if (item.isChecked()) {
-                    preferences.edit().putBoolean(getString(R.string.show_favorites), false).apply();
+                    preferences.edit().putBoolean(showFavoritesKey, false).apply();
                     item.setChecked(false);
                 } else {
-                    preferences.edit().putBoolean(getString(R.string.show_favorites), true).apply();
+                    preferences.edit().putBoolean(showFavoritesKey, true).apply();
                     item.setChecked(true);
                 }
                 dataManager.getRefreshedRates();
                 return true;
             case R.id.settings_btn:
+                try {
+                    handler.removeCallbacks(runnable);
+                } catch (NullPointerException e) {
+                    e.printStackTrace();
+                }
                 startActivity(new Intent(getContext(), SettingsActivity.class));
                 return true;
         }

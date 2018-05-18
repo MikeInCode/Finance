@@ -19,8 +19,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_switch" />
-                            <entry key="sourceFile" value="C:\Users\Mike\Desktop\UI\switch.svg" />
+                            <entry key="outputName" value="ic_refresh" />
+                            <entry key="sourceFile" value="C:\Users\Mike\Desktop\UI\refresh.svg" />
                           </map>
                         </option>
                       </PersistentState>

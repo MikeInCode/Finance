@@ -4,12 +4,14 @@
     <string name="exchange">Exchange</string>
     <string name="news">News</string>
 
-    <string name="internet_connection_not_found">Internet connection not found!</string>
-    <string name="please_check_your_network_settings">Please, check your network settings</string>
-    <string name="could_not_receive_data_from_server">Couldn\'t receive data from server</string>
-    <string name="please_try_to_connect_later">Please, try to connect later</string>
+    <string name="internet_error_title">Internet connection not found!</string>
+    <string name="internet_error_message">Please, check your network settings</string>
+    <string name="server_side_error_title">Couldn\'t receive data from server</string>
+    <string name="server_side_error_message">Please, try to connect later</string>
+    <string name="empty_favorites_error_title">Favorites list is empty</string>
+    <string name="empty_favorites_error_message">Click favorite button near needed
+        currencies and they will appear here</string>
     <string name="usd">USD</string>
     <string name="one">1</string>
     <string name="us_dollar">US Dollar</string>
-
 </resources>

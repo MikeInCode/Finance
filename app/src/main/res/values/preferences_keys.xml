@@ -1,7 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="base_currency">base_currency</string>
     <string name="show_favorites">show_favorites</string>
     <string name="is_favorite">_is_favorite</string>
-    <string name="decimal_digits">decimal_digits</string>
+    <string name="sorting_type">sorting_type</string>
+    <string name="sorting_direction">sorting_direction</string>
+
+    <string name="auto_refresh">auto_refresh</string>
+    <string-array name="auto_refresh_entries">
+        <item>Off</item>
+        <item>Every 30 seconds</item>
+        <item>Every minute</item>
+        <item>Every 2 minutes</item>
+        <item>Every 3 minutes</item>
+        <item>Every 4 minutes</item>
+        <item>Every 5 minutes</item>
+    </string-array>
+    <string-array name="auto_refresh_values">
+        <item>off</item>
+        <item>30000</item>
+        <item>10000</item>
+        <item>120000</item>
+        <item>180000</item>
+        <item>240000</item>
+        <item>300000</item>
+    </string-array>
+
+    <string name="number_precision">number_precision</string>
+    <string-array name="number_precision_entries">
+        <item>1 digit after dot</item>
+        <item>2 digits after dot</item>
+        <item>3 digits after dot</item>
+        <item>4 digits after dot</item>
+    </string-array>
+    <string-array name="number_precision_entry_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+
+    <string name="clear_favorites">clear_favorites</string>
+    <string name="reset_settings">reset_settings</string>
+
 </resources>
