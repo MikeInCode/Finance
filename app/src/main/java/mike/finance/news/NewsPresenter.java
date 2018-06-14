@@ -4,6 +4,7 @@ import android.view.MenuItem;
 
 import java.util.List;
 
+import mike.finance.APIManager;
 import mike.finance.ArticleInformation;
 import mike.finance.DataManager;
 import mike.finance.R;
@@ -52,6 +53,7 @@ public class NewsPresenter implements INewsPresenter {
     public void onOptionsMenuButtonClicked(SharedPreferencesAccessor prefs, MenuItem item) {
         switch (item.getItemId()) {
             case R.id.refresh_btn:
+                refreshData();
                 newsView.showDataRefreshedToast();
                 break;
             case R.id.by_published_date:

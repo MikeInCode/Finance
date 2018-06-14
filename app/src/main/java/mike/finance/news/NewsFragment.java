@@ -21,6 +21,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import mike.finance.APIManager;
 import mike.finance.ArticleInformation;
 import mike.finance.DataManager;
 import mike.finance.R;
@@ -78,10 +79,16 @@ public class NewsFragment extends Fragment implements INewsView, SwipeRefreshLay
     }
 
     @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        onRefresh();
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
         getActivity().invalidateOptionsMenu();
-        onRefresh();
+
         if (!prefs.getAutoRefreshValue().equals("off")) {
             handler = new Handler();
             runnable = new Runnable() {
