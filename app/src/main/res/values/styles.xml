@@ -13,9 +13,15 @@
     </style>
 
     <style name="ExchangeKeyboard">
-        <item name="android:background">@drawable/rounded_button</item>
-        <item name="android:textColor">@drawable/rounded_button_text</item>
+        <item name="android:background">@drawable/style_button_keyboard</item>
+        <item name="android:textColor">@drawable/text_button_changer</item>
         <item name="android:textSize">20sp</item>
+        <item name="android:stateListAnimator">@null</item>
+    </style>
+
+    <style name="ReadMoreButton">
+        <item name="android:background">@drawable/style_button_read_more</item>
+        <item name="android:textColor">@drawable/text_button_changer</item>
         <item name="android:stateListAnimator">@null</item>
     </style>
 

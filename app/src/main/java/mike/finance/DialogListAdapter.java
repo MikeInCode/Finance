@@ -1,8 +1,6 @@
 package mike.finance;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,18 +16,16 @@ import butterknife.ButterKnife;
 
 public class DialogListAdapter extends BaseAdapter {
 
-    private Context context;
     private LayoutInflater inflater;
     private List<CurrencyInformation> currencyList;
-    private List<CurrencyInformation> list;
-    private SharedPreferences preferences;
+    private List<CurrencyInformation> searchingCurrencyList;
+    private SharedPreferencesAccessor prefs;
 
     public DialogListAdapter(Context context, List<CurrencyInformation> currencyList) {
-        this.context = context;
         inflater = LayoutInflater.from(context);
         this.currencyList = currencyList;
-        list = new ArrayList<>(currencyList);
-        preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        searchingCurrencyList = new ArrayList<>(currencyList);
+        prefs = new SharedPreferencesAccessor(context);
     }
 
     @Override
@@ -61,8 +57,7 @@ public class DialogListAdapter extends BaseAdapter {
         CurrencyInformation currencyListItem = (CurrencyInformation) getItem(position);
         viewHolder.currencyCode.setText(currencyListItem.getCode());
         viewHolder.currencyName.setText(currencyListItem.getName());
-        if (preferences.getBoolean(currencyListItem.getCode() + context
-                .getString(R.string.is_favorite), false)) {
+        if (prefs.isFavorite(currencyListItem.getCode())) {
             viewHolder.favIcon.setImageResource(R.drawable.ic_favorite_active);
         } else {
             viewHolder.favIcon.setImageDrawable(null);
@@ -81,13 +76,13 @@ public class DialogListAdapter extends BaseAdapter {
         }
     }
 
-    public void filter(String text) {
+    public boolean filter(String text) {
         text = text.toLowerCase();
         currencyList.clear();
         if (text.length() == 0) {
-            currencyList.addAll(list);
+            currencyList.addAll(searchingCurrencyList);
         } else {
-            for (CurrencyInformation i : list) {
+            for (CurrencyInformation i : searchingCurrencyList) {
                 if (i.getCode().toLowerCase().contains(text) || i.getName().toLowerCase().contains(text)) {
                     CurrencyInformation currency = new CurrencyInformation(i.getCode(), i.getRate());
                     currency.setName(i.getName());
@@ -97,6 +92,7 @@ public class DialogListAdapter extends BaseAdapter {
             }
         }
         notifyDataSetChanged();
+        return !currencyList.isEmpty();
     }
 }
 

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/refresh_btn"
+        android:icon="@drawable/ic_refresh"
+        android:title="Refresh"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:title="Sort by..."
+        app:showAsAction="never">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/by_published_date"
+                    android:title="published date" />
+                <item
+                    android:id="@+id/by_popularity"
+                    android:title="popularity" />
+            </group>
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/settings_btn"
+        android:title="Settings"
+        app:showAsAction="never" />
+</menu>

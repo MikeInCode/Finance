@@ -12,10 +12,26 @@
     <ListPreference
         android:defaultValue="3"
         android:entries="@array/number_precision_entries"
-        android:entryValues="@array/number_precision_entry_values"
+        android:entryValues="@array/number_precision_values"
         android:key="@string/number_precision"
         android:summary="3 digits after dot"
         android:title="Number precision" />
+
+    <ListPreference
+        android:defaultValue="3"
+        android:entries="@array/news_period_entries"
+        android:entryValues="@array/news_period_values"
+        android:key="@string/news_period"
+        android:summary="Last 3 days"
+        android:title="News period" />
+
+    <ListPreference
+        android:defaultValue="finance"
+        android:entries="@array/news_searching_keyword_entries"
+        android:entryValues="@array/news_searching_keyword_values"
+        android:key="@string/news_searching_keyword"
+        android:summary="Finance"
+        android:title="News searching keyword" />
 
     <Preference
         android:key="@string/clear_favorites"

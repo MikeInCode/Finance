@@ -20,22 +20,26 @@
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/sort_btn"
-        android:title="Sort"
-        app:showAsAction="never" />
-
-    <item
-        android:title="Sorting type"
+        android:title="Sort by..."
         app:showAsAction="never">
         <menu>
             <group android:checkableBehavior="single">
                 <item
-                    android:id="@+id/sort_by_name"
-                    android:checked="true"
-                    android:title="Sort by name" />
+                    android:id="@+id/name_natural"
+                    android:icon="@drawable/sort_by_alphabet"
+                    android:title="name ascending" />
                 <item
-                    android:id="@+id/sort_by_value"
-                    android:title="Sort by value" />
+                    android:id="@+id/name_reverse"
+                    android:icon="@drawable/sort_by_alphabet_reverse"
+                    android:title="name descending" />
+                <item
+                    android:id="@+id/value_natural"
+                    android:icon="@drawable/sort_by_value"
+                    android:title="value ascending" />
+                <item
+                    android:id="@+id/value_reverse"
+                    android:icon="@drawable/sort_by_value_reverse"
+                    android:title="value descending" />
             </group>
         </menu>
     </item>

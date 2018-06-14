@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import mike.finance.exchange.ExchangeFragment;
+import mike.finance.news.NewsFragment;
 import mike.finance.rates.RatesFragment;
 
 public class MainActivity extends AppCompatActivity implements
@@ -16,6 +17,7 @@ public class MainActivity extends AppCompatActivity implements
 
     private RatesFragment ratesFragment = new RatesFragment();
     private ExchangeFragment exchangeFragment = new ExchangeFragment();
+    private NewsFragment newsFragment = new NewsFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,8 +27,7 @@ public class MainActivity extends AppCompatActivity implements
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        getIntent().putExtra("data_manager", new DataManager(findViewById(android.R.id.content)));
+        getIntent().putExtra("data_manager", new DataManager());
 
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_content, ratesFragment).commit();
@@ -47,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements
                 transaction.replace(R.id.fragment_content, exchangeFragment).commit();
                 return true;
             case R.id.navigation_news:
-
+                transaction.replace(R.id.fragment_content, newsFragment).commit();
                 return true;
         }
         return false;

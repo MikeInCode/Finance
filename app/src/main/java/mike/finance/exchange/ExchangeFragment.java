@@ -2,10 +2,8 @@ package mike.finance.exchange;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
-import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -18,56 +16,45 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import butterknife.BindString;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import mike.finance.CurrencyInformation;
 import mike.finance.DataManager;
 import mike.finance.DialogListAdapter;
 import mike.finance.R;
 import mike.finance.SettingsActivity;
+import mike.finance.SharedPreferencesAccessor;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ExchangeFragment extends Fragment implements View.OnClickListener {
+public class ExchangeFragment extends Fragment implements IExchangeView {
 
-    @BindView(R.id.initial_currency_code) TextView initialCurrencyCode;
-    @BindView(R.id.target_currency_code) TextView targetCurrencyCode;
+    @BindView(R.id.initial_currency_code) TextView initialCode;
+    @BindView(R.id.initial_currency_icon) ImageView initialIcon;
+    @BindView(R.id.initial_currency_name) TextView initialName;
+    @BindView(R.id.target_currency_code) TextView targetCode;
+    @BindView(R.id.target_currency_name) TextView targetName;
+    @BindView(R.id.target_currency_icon) ImageView targetIcon;
     @BindView(R.id.exchange_amount) TextView exchangeAmount;
     @BindView(R.id.exchange_result) TextView exchangeResult;
-    @BindView(R.id.exchange_switcher) ImageButton exchangeSwitcher;
-    @BindView(R.id.zero) Button zeroBtn;
-    @BindView(R.id.one) Button oneBtn;
-    @BindView(R.id.two) Button twoBtn;
-    @BindView(R.id.three) Button threeBtn;
-    @BindView(R.id.four) Button fourBtn;
-    @BindView(R.id.five) Button fiveBtn;
-    @BindView(R.id.six) Button sixBtn;
-    @BindView(R.id.seven) Button sevenBtn;
-    @BindView(R.id.eight) Button eightBtn;
-    @BindView(R.id.nine) Button nineBtn;
-    @BindView(R.id.dot) Button dotBtn;
-    @BindView(R.id.clear_last) Button clearLastBtn;
-    @BindView(R.id.clear_all) Button clearAllBtn;
 
-    @BindString(R.string.base_currency) String baseCurrencyKey;
-    @BindString(R.string.auto_refresh) String autoRefreshKey;
+    @BindView(R.id.no_internet_view) View noInternetView;
+    @BindView(R.id.server_side_error_view) View serverSideErrorView;
 
-    private DataManager dataManager;
-    private String initialCurrency;
-    private String targetCurrency;
-    private StringBuilder exchangeAmountValue;
-    private boolean isFirstRun = true;
+    private ExchangePresenter exchangePresenter;
     private Handler handler;
     private Runnable runnable;
     private int refreshInterval;
+    private SharedPreferencesAccessor prefs;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -82,65 +69,125 @@ public class ExchangeFragment extends Fragment implements View.OnClickListener {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        prefs = new SharedPreferencesAccessor(getContext());
 
-        if (isFirstRun) {
-            initialCurrency = "USD";
-            targetCurrency = preferences.getString(baseCurrencyKey, "UAH");
-            exchangeAmountValue = new StringBuilder("1");
-            isFirstRun = false;
-        }
-        initialCurrencyCode.setText(initialCurrency);
-        targetCurrencyCode.setText(targetCurrency);
-        exchangeAmount.setText(exchangeAmountValue);
-
-        dataManager = (DataManager) getActivity().getIntent().getSerializableExtra("data_manager");
-        dataManager.getRefreshedExchangeResult();
-
-        initialCurrencyCode.setOnClickListener(this);
-        targetCurrencyCode.setOnClickListener(this);
-        exchangeSwitcher.setOnClickListener(this);
-        zeroBtn.setOnClickListener(this);
-        oneBtn.setOnClickListener(this);
-        twoBtn.setOnClickListener(this);
-        threeBtn.setOnClickListener(this);
-        fourBtn.setOnClickListener(this);
-        fiveBtn.setOnClickListener(this);
-        sixBtn.setOnClickListener(this);
-        sevenBtn.setOnClickListener(this);
-        eightBtn.setOnClickListener(this);
-        nineBtn.setOnClickListener(this);
-        dotBtn.setOnClickListener(this);
-        clearLastBtn.setOnClickListener(this);
-        clearAllBtn.setOnClickListener(this);
-
-        if (!preferences.getString(autoRefreshKey, "off").equals("off")) {
-            handler = new Handler();
-            runnable = new Runnable() {
-                @Override
-                public void run() {
-                    dataManager.getRefreshedExchangeResult();
-                    Toast.makeText(getContext(), "Data refreshed!", Toast.LENGTH_SHORT).show();
-                    startAutoRefresh();
-                }
-            };
-            refreshInterval = Integer.valueOf(preferences.getString(autoRefreshKey, "off"));
-            startAutoRefresh();
-        }
+        DataManager dataManager = (DataManager) getActivity().getIntent().getSerializableExtra("data_manager");
+        dataManager.init(view);
+        exchangePresenter = new ExchangePresenter(this, dataManager);
     }
 
     private void startAutoRefresh() {
         handler.postDelayed(runnable, refreshInterval);
     }
 
+    public void onRefresh() {
+        exchangePresenter.refreshData(initialCode.getText().toString(), targetCode.getText().toString(),
+                exchangeAmount.getText().toString());
+    }
+
     @Override
-    public void onDestroy() {
-        super.onDestroy();
+    public void onResume() {
+        super.onResume();
+        getActivity().invalidateOptionsMenu();
+
+        onRefresh();
+        if (!prefs.getAutoRefreshValue().equals("off")) {
+            handler = new Handler();
+            runnable = new Runnable() {
+                @Override
+                public void run() {
+                    onRefresh();
+                    showDataRefreshedToast();
+                    startAutoRefresh();
+                }
+            };
+            refreshInterval = Integer.valueOf(prefs.getAutoRefreshValue());
+            startAutoRefresh();
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
         try {
             handler.removeCallbacks(runnable);
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        exchangePresenter.onDestroy();
+        super.onDestroy();
+    }
+
+    @OnClick({R.id.initial_currency_code, R.id.target_currency_code, R.id.exchange_switcher,
+            R.id.zero, R.id.one, R.id.two, R.id.three, R.id.four, R.id.five, R.id.six,
+            R.id.seven, R.id.eight, R.id.nine, R.id.dot, R.id.clear_last, R.id.clear_all})
+    public void onClick(View view) {
+        exchangePresenter.onButtonClicked(view.getId(), initialCode, targetCode, exchangeAmount);
+    }
+
+    @Override
+    public void displayResult(CurrencyInformation initialCurrency, CurrencyInformation targetCurrency) {
+        initialIcon.setImageResource(initialCurrency.getIcon());
+        initialCode.setText(initialCurrency.getCode());
+        initialName.setText(initialCurrency.getName());
+        exchangeAmount.setText(initialCurrency.getRate());
+        targetIcon.setImageResource(targetCurrency.getIcon());
+        targetCode.setText(targetCurrency.getCode());
+        targetName.setText(targetCurrency.getName());
+        exchangeResult.setText(targetCurrency.getRate());
+    }
+
+    @Override
+    public void goToSettings() {
+        startActivity(new Intent(getContext(), SettingsActivity.class));
+    }
+
+    @Override
+    public void showClearFields() {
+        exchangeAmount.setText("0");
+        exchangeResult.setText("0");
+    }
+
+    @Override
+    public void showDot(String amount) {
+        exchangeAmount.setText(amount);
+    }
+
+    @Override
+    public void buildDialogCurrencyList(List<CurrencyInformation> list, TextView textView) {
+        createDialogAlert(list, textView);
+    }
+
+    @Override
+    public void showDataRefreshedToast() {
+        Toast.makeText(getContext(), "Data refreshed!", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void hideAllRequestErrorViews() {
+        noInternetView.setVisibility(View.INVISIBLE);
+        serverSideErrorView.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    public void showNoInternetErrorView() {
+        noInternetView.setVisibility(View.VISIBLE);
+        noInternetView.bringToFront();
+    }
+
+    @Override
+    public void showServerSideErrorView() {
+        serverSideErrorView.setVisibility(View.VISIBLE);
+        serverSideErrorView.bringToFront();
+    }
+
+    @Override
+    public void showSystemErrorToast() {
+        Toast.makeText(getContext(), "Maximum field length is reached!", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -151,102 +198,16 @@ public class ExchangeFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.refresh_btn:
-                dataManager.getRefreshedExchangeResult();
-                Toast.makeText(getContext(), "Successfully updated!", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.switch_btn:
-                switchCurrencies();
-                break;
-            case R.id.settings_btn:
-                try {
-                    handler.removeCallbacks(runnable);
-                } catch (NullPointerException e) {
-                    e.printStackTrace();
-                }
-                startActivity(new Intent(getContext(), SettingsActivity.class));
-                return true;
-        }
-
+        exchangePresenter.onOptionsMenuButtonClicked(item, initialCode, targetCode, exchangeAmount);
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.initial_currency_code:
-                showDialog(initialCurrencyCode);
-                break;
-            case R.id.target_currency_code:
-                showDialog(targetCurrencyCode);
-                break;
-            case R.id.exchange_switcher:
-                switchCurrencies();
-                break;
-            case R.id.zero:
-                enterNumber("0");
-                break;
-            case R.id.one:
-                enterNumber("1");
-                break;
-            case R.id.two:
-                enterNumber("2");
-                break;
-            case R.id.three:
-                enterNumber("3");
-                break;
-            case R.id.four:
-                enterNumber("4");
-                break;
-            case R.id.five:
-                enterNumber("5");
-                break;
-            case R.id.six:
-                enterNumber("6");
-                break;
-            case R.id.seven:
-                enterNumber("7");
-                break;
-            case R.id.eight:
-                enterNumber("8");
-                break;
-            case R.id.nine:
-                enterNumber("9");
-                break;
-            case R.id.dot:
-                if (checkFieldLength()) {
-                    if (!exchangeAmountValue.toString().contains(".")) {
-                        exchangeAmountValue.append(".");
-                        exchangeAmount.setText(exchangeAmountValue);
-                    }
-                } else {
-                    showToast();
-                }
-                break;
-            case R.id.clear_last:
-                if (exchangeAmountValue.length() != 0) {
-                    exchangeAmountValue = new StringBuilder(exchangeAmountValue
-                            .substring(0, exchangeAmountValue.length() - 1));
-                    if (exchangeAmountValue.length() != 0) {
-                        exchangeAmount.setText(exchangeAmountValue);
-                        dataManager.getRefreshedExchangeResult();
-                    } else {
-                        clearFields();
-                    }
-                }
-                break;
-            case R.id.clear_all:
-                clearFields();
-                break;
-        }
-    }
 
-    private void showDialog(TextView textField) {
+    private void createDialogAlert(List<CurrencyInformation> dialogCurrencyList, TextView textView) {
         View alertDialogView = getLayoutInflater().inflate(R.layout.dialog_currency_list, null);
         AlertDialog.Builder alertBuilder = new AlertDialog.Builder(getContext());
         alertBuilder.setView(alertDialogView);
-        if (textField.getId() == R.id.initial_currency_code) {
+        if (textView.getId() == R.id.initial_currency_code) {
             alertBuilder.setTitle("Choose initial currency");
         } else {
             alertBuilder.setTitle("Choose target currency");
@@ -260,22 +221,17 @@ public class ExchangeFragment extends Fragment implements View.OnClickListener {
         alertDialog.show();
 
         ListView dialogListView = alertDialogView.findViewById(R.id.dialog_list_view);
-        DialogListAdapter dialogListAdapter = new DialogListAdapter(getContext(), dataManager.getDialogCurrencyList());
+        DialogListAdapter dialogListAdapter = new DialogListAdapter(getContext(), dialogCurrencyList);
         dialogListView.setAdapter(dialogListAdapter);
 
         dialogListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                CurrencyInformation currency = (CurrencyInformation) dialogListView.getItemAtPosition(i);
-                if (textField.getId() == R.id.initial_currency_code) {
-                    initialCurrency = currency.getCode();
-                    textField.setText(initialCurrency);
-                } else {
-                    targetCurrency = currency.getCode();
-                    textField.setText(targetCurrency);
-                }
+                TextView codeTextView = view.findViewById(R.id.dialog_currency_code);
+                String code = codeTextView.getText().toString();
+                textView.setText(code);
                 alertDialog.dismiss();
-                dataManager.getRefreshedExchangeResult();
+                onRefresh();
             }
         });
 
@@ -288,45 +244,13 @@ public class ExchangeFragment extends Fragment implements View.OnClickListener {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                dialogListAdapter.filter(newText);
+                if (dialogListAdapter.filter(newText)) {
+                    alertDialogView.findViewById(R.id.currency_not_found_msg).setVisibility(View.INVISIBLE);
+                } else {
+                    alertDialogView.findViewById(R.id.currency_not_found_msg).setVisibility(View.VISIBLE);
+                }
                 return false;
             }
         });
-    }
-
-    private void switchCurrencies() {
-        String fromCurrencyCode = targetCurrencyCode.getText().toString();
-        String toCurrencyCode = initialCurrencyCode.getText().toString();
-        initialCurrencyCode.setText(fromCurrencyCode);
-        targetCurrencyCode.setText(toCurrencyCode);
-        dataManager.getRefreshedExchangeResult();
-    }
-
-    private void enterNumber(String value) {
-        if (checkFieldLength()) {
-            if (exchangeAmountValue.toString().equals("0")) {
-                exchangeAmountValue = new StringBuilder(value);
-            } else {
-                exchangeAmountValue.append(value);
-            }
-            exchangeAmount.setText(exchangeAmountValue);
-            dataManager.getRefreshedExchangeResult();
-        } else {
-            showToast();
-        }
-    }
-
-    private boolean checkFieldLength() {
-        return exchangeAmountValue.length() < 9;
-    }
-
-    private void clearFields() {
-        exchangeAmountValue = new StringBuilder("0");
-        exchangeAmount.setText(exchangeAmountValue);
-        exchangeResult.setText("0");
-    }
-
-    private void showToast() {
-        Toast.makeText(getContext(), "Maximum field length is reached!", Toast.LENGTH_SHORT).show();
     }
 }

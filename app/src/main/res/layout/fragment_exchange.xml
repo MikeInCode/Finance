@@ -49,6 +49,7 @@
             android:textSize="22sp"
             app:layout_constraintStart_toEndOf="@+id/initial_currency_icon"
             app:layout_constraintTop_toTopOf="@+id/initial_currency_icon"
+            android:text="USD"
             tools:text="USD" />
 
         <TextView
@@ -71,6 +72,7 @@
             android:textSize="22sp"
             app:layout_constraintBaseline_toBaselineOf="@+id/initial_currency_code"
             app:layout_constraintEnd_toEndOf="parent"
+            android:text="1"
             tools:text="1" />
 
         <TextView
@@ -143,6 +145,7 @@
             android:textSize="22sp"
             app:layout_constraintStart_toEndOf="@+id/target_currency_icon"
             app:layout_constraintTop_toTopOf="@+id/target_currency_icon"
+            android:text="UAH"
             tools:text="UAH" />
 
         <TextView

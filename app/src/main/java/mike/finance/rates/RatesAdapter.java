@@ -1,8 +1,6 @@
 package mike.finance.rates;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +17,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import mike.finance.CurrencyInformation;
 import mike.finance.R;
+import mike.finance.SharedPreferencesAccessor;
 
 public class RatesAdapter extends BaseAdapter {
 
@@ -26,12 +25,14 @@ public class RatesAdapter extends BaseAdapter {
     private LayoutInflater inflater;
     private List<CurrencyInformation> currencyList;
     private List<CurrencyInformation> searchingCurrencyList;
-    private SharedPreferences preferences;
+    private RatesFragment.RatesAdapterCallback callback;
+    private SharedPreferencesAccessor prefs;
 
-    public RatesAdapter(Context context) {
+    public RatesAdapter(Context context, RatesFragment.RatesAdapterCallback callback) {
         this.context = context;
         inflater = LayoutInflater.from(context);
-        this.preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        prefs = new SharedPreferencesAccessor(context);
+        this.callback = callback;
     }
 
     public void setCurrencyList(List<CurrencyInformation> currencyList) {
@@ -71,27 +72,16 @@ public class RatesAdapter extends BaseAdapter {
         viewHolder.currencyIcon.setImageResource(currencyListItem.getIcon());
         viewHolder.currencyRate.setText(setRightRate(currencyListItem.getRate()));
 
-        String key = currencyListItem.getCode() + context.getString(R.string.is_favorite);
-        if (!preferences.getBoolean(key, false)) {
+        if (!prefs.isFavorite(currencyListItem.getCode())) {
             viewHolder.isFavorite.setImageResource(R.drawable.ic_favorite_inactive);
         } else {
             viewHolder.isFavorite.setImageResource(R.drawable.ic_favorite_active);
         }
 
-        viewHolder.isFavorite.setOnLongClickListener(new View.OnLongClickListener() {
+        viewHolder.isFavorite.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onLongClick(View v) {
-                SharedPreferences.Editor editor = preferences.edit();
-                if (!preferences.getBoolean(key, false)) {
-                    editor.putBoolean(key, true);
-                    editor.apply();
-                    viewHolder.isFavorite.setImageResource(R.drawable.ic_favorite_active);
-                } else {
-                    editor.putBoolean(key, false);
-                    editor.apply();
-                    viewHolder.isFavorite.setImageResource(R.drawable.ic_favorite_inactive);
-                }
-                return false;
+            public void onClick(View view) {
+                callback.onFavButtonClicked(view, position, currencyListItem.getCode());
             }
         });
 
@@ -131,7 +121,7 @@ public class RatesAdapter extends BaseAdapter {
 
     private String setRightRate(String rate) {
         try {
-            int digits = Integer.parseInt(preferences.getString(context.getString(R.string.number_precision), "3"));
+            int digits = Integer.parseInt(prefs.getNumberPrecisionValue());
             return new BigDecimal(1).divide(new BigDecimal(rate), digits, BigDecimal.ROUND_HALF_UP)
                     .stripTrailingZeros().toPlainString();
         } catch (NumberFormatException e) {

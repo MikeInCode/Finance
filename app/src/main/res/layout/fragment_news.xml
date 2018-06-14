@@ -2,7 +2,7 @@
 <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/rates_list_refresh"
+    android:id="@+id/news_list_refresh"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".rates.RatesFragment">
@@ -25,26 +25,8 @@
 
         </include>
 
-        <include
-            android:id="@+id/empty_favorites_view"
-            layout="@layout/empty_favorites_error"
-            android:visibility="invisible">
-
-        </include>
-
-        <TextView
-            android:id="@+id/currency_not_found_msg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="Currency not found"
-            android:visibility="invisible"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <ListView
-            android:id="@+id/rates_list_view"
+            android:id="@+id/news_list_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:smoothScrollbar="true">
